@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>check indexedDB in browser</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<script>
+	var test=indexedDB ||webkitindexedDB ||mozindexedDB||msindexedDB;
+	if (!test)
+		document.write('<center><h1>PLEASE UPDATE YOUR BROWSER</h1></center>');
+	else
+		location.href='https://keshavsingh.ml';
+</script>
+</body>
+</html>
