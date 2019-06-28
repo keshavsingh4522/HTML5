@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>databses</title>
+</head>
+<body>
+	<button>delete databses</button>
+<script>
+	var test=indexedDB;
+	if(!test)
+	{
+		document.write('<h1>please update your databases</h1>')
+	}
+	else
+	{
+    	test.open('keshav',1);
+	}
+	var btn=document.querySelector('button');
+	btn.onclick=function(){
+		test.deleteDatabase('keshav');
+	}
+</script>
+</body>
+</html>
