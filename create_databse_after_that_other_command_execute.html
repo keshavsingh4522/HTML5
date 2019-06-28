@@ -1,0 +1,27 @@
+<!--because indexedDB databses execute in last of programm so there may data create or not due to 
+this create databse first after that other command execute  -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>databses</title>
+</head>
+<body>
+<script>
+	var test=indexedDB;
+	if(!test)
+	{
+		document.write('<h1>please update your browser</h1>');
+	}
+	else
+	{
+		var command=test.open('keshav',1);
+		command.onsuccess=function(){
+			alert('your databses created');
+		}
+	}
+</script>
+</body>
+</html>
