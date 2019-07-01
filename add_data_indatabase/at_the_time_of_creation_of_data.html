@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SRD/CRD</title>
+</head>
+<body>
+    
+<script>
+    //browser compatiability
+    window.indexedDB = window.indexedDb || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+    //read write permission
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    
+    //key permission
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+    
+    if(!window.indexedDB)
+        {
+            document.write('<center><h1>Please update your browser</h1></center>')
+        }
+    else
+        {
+            //create databases
+            var database=window.indexedDB.open('wap institute');
+            database.onsuccess=function(){
+                console.log(this.result);
+            }
+                    //databases.onsuccess=function(event){
+                              //console.log(event.target.result)
+                       //}
+            //  write in databases when database ceate
+             database.onupgradeneeded=function(){
+                 var data={name:'keshav',roll:'78'}
+                 var idb=this.result;
+                var object=idb.createObjectStore('student',{keyPath:'name'});
+                object.add(data);
+            } 
+        }
+</script>
+</body>
+</html>
