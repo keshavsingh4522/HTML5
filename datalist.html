@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>datalist</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<style type="text/css">
+			#box
+			{
+				width:600px;
+			}
+			#form-concept
+			{
+				width: 400px;
+			}
+		</style>
+	</head>
+	<body class="bg-secondary">
+		<div class="dialog  mx-auto" id="box">
+			<div class="modal-content">
+				<div class="modal-header bg-dark text-light">
+					<h5>FILL THE FORM</h5>
+				</div>
+				<div class="modal-body">
+					<form onsubmit="return false">
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Username</span>
+							</div>
+							<input type="name" name="username" id="username" class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Password</span>
+							</div>
+							<input type="password" name="password" id="password" class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">choose country</span>
+							</div>
+							<input list="country" class="form-control">
+							<datalist id="country">
+							<option value="Honduras">Honduras</option>
+							<option value="Hong Kong">Hong Kong</option>
+							<option value="Hungary">Hungary</option>
+							<option value="Iceland">Iceland</option>
+							<option value="India">India</option>
+							<option value="Indonesia">Indonesia</option>
+							<option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+							<option value="Iraq">Iraq</option>
+							<option value="Ireland">Ireland</option>
+							<option value="Israel">Israel</option>
+							<option value="Italy">Italy</option>
+							<option value="Jamaica">Jamaica</option>
+							</datalist>
+						</div>
+						<input type="submit" data-toggle="modal" data-target="#form-concept" value="Login" class="btn btn-info float-right">
+					</form>
+				</div>
+				<div class="modal-footer bg-dark text-light pb-1">
+					<p>powered by @keshavsingh</p>
+				</div>
+			</div>
+		</div>
+		<div class="modal mx-auto" id="form-concept">
+			<div class="dialog">
+				<div class="modal-content">
+					<div class="modal-header bg-success text-light">
+						<h5>Keshavsingh</h5>
+					</div>
+					<div class="modal-body bg-dark text-light">
+						<h6>Hi,We call you shortly</h6>
+					</div>
+					<div class="modal-footer bg-success text-light pb-1">
+						<p>@keshavsingh</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
