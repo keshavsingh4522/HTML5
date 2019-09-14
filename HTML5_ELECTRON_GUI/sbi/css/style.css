@@ -1,0 +1,97 @@
+.ui-header
+{
+	background-image: url(../images/header.jpg);
+	height: 150px;
+	background-size: cover;
+}
+.ui-icon-yono:after
+{
+	background-image:url(../images/yono.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+.ui-icon-qr:after
+{
+	background-image:url(../images/qr.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+.ui-icon-gear:after
+{
+	background-image:url(../images/gear.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+.ui-icon-grid:after
+{
+	background-image:url(../images/grid.png);
+	background-size: 25px 25px;
+	background-repeat: no-repeat;
+}
+#homepage
+{
+	background-color: white;
+}
+#tabs .ui-btn
+{
+	background-color: inherit;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	-o-box-shadow: none;
+	box-shadow: none;
+
+	border:none;
+	font-size: 15px;
+}
+#tabs .ui-btn-active
+{
+	color: black;
+	border-bottom:3px solid #2ca8ca;
+}
+.ui-content
+{
+	padding: 0;
+}
+#login
+{
+	padding: 10px 40px;
+}
+#login input
+{
+	border:none;
+	box-shadow: none;
+	outline: none;
+}
+#login input[type='password'],input[type='text']
+{
+	padding-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	border-bottom: 1px solid #d4d4d4 !important;
+}
+#login input[type='submit']
+{
+	padding: 10px;
+	width: 40%;
+	height: 35px;
+	margin: 3px 30%;
+	border-radius: 20px;
+	cursor: pointer;
+	color: white;
+}
+#footer
+{
+	border:none;
+}
+#footer .ui-btn
+{
+	border:none;
+	background-color: white;
+	box-shadow:none;
+}
+#footer .ui-btn-active
+{
+	color: white;
+	background-color: rgba(12,33,55,0.5);
+}

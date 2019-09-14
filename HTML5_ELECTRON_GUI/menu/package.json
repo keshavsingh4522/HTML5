@@ -1,0 +1,15 @@
+{
+  "name": "practise",
+  "version": "1.0.0",
+  "description": "keshav is keshav",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "keshav",
+    "keshav"
+  ],
+  "author": "keshav singh",
+  "license": "ISC"
+}

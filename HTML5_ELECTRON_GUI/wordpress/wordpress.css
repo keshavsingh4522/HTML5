@@ -1,0 +1,8 @@
+@charset "utf-8";
+body{margin:0;padding: 0;overflow-y: scroll;background-color: #f5f5f5;}
+#name{color: white;text-align: center;margin: 5px;}
+.header{width: 100%;height: 150px;float: left;background-color: #087cff;box-sizing: border-box;position: fixed;top: 0;left: 0;}
+.editable{width: 75%;height: 460px;border:1px solid #efefef;margin-left: 12%;box-shadow: 0px 0px 8px black;overflow-y: scroll;padding: 10px;
+	box-sizing: border-box;position: fixed;top: 160px;background-color: white;}
+.editable:focus{outline: none;}
+button{background-color: white;border:none;box-sizing: border-box;width: 100px;height: 25px;}	

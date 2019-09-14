@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title></title>
+
+	     <link rel = "stylesheet" href = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+      
+
+      <script src = "https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src = "https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+  <!-- 1st page -->
+<div data-role="page" id="homepage">
+	<div data-role="header">
+		
+	</div>
+	<div data-role="main" class="ui-content">
+		<div data-role="tabs" id="tabs">
+			<div data-role="navbar" data-grid="a">
+				<ul>
+					<li><a href="#login" class="ui-btn-active">Login</a></li>
+					<li><a href="#register">Register</a></li>
+				</ul>
+			</div>
+			<!-- login -->
+			<div id="login">
+				<form autocomplete="off">
+				<div class="ui-grid-solo">
+					<div class="ui-block-a">
+						<input type="text" name="username" placeholder="username" data-role="none">
+					</div>
+					<div class="ui-block-a">					
+						<input type="password" name="password" placeholder="password" data-role="none">
+					</div>
+					<div class="ui-block-a">					
+						<input type="submit" value="Login" data-role="none" style="background-color: #23245F;">
+					</div>
+					<div class="ui-block-a">					
+						<input type="submit" value="हिंदी" data-role="none" style="background-color: #2CA8CC;">
+					</div>
+				</div>
+			    </form>
+			    <div class="ui-grid-a">
+			    	<div class="ui-block-a">
+			    		<a href="#">Forgot Login
+			    		Password ?</a>
+			    	</div>
+			    	<div class="ui-block-b" align="right">
+			    		<a href="#">Lock User ID</a>
+			    	</div>
+			    </div>
+			</div>
+			<!-- register -->
+			<div id="register">
+				<h1>register</h1>
+			</div>
+		</div>
+	</div>
+	<div data-role="footer" data-position="fixed" id="footer">
+		<div data-role="navbar" data-grid='c'>
+			<ul>
+				<li><a href="#" class="ui-btn ui-icon-yono ui-btn-icon-top">Yono SBI</a></li>
+				<li><a href="#" class="ui-btn ui-icon-qr ui-btn-icon-top">Bharat QR</a></li>
+				<li><a href="#" class="ui-btn ui-icon-gear ui-btn-icon-top">What's New</a></li>
+				<li><a href="#" class="ui-btn ui-icon-grid ui-btn-icon-top">More</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<title>wordpress</title>
+	<link rel="stylesheet" type="text/css" href="wordpress.css">
+	<script src="wordpress.js"></script>
+</head>
+<body>
+<header class="header">
+	<h1 id="name"><b>WAP TEXT EDITOR 1.0</b></h1>
+	<button onclick="bold()"><b>B</b></button>
+	<button onclick="italic()"><i>I</i></button>
+	<button onclick="strth()"><s>abc</s></button>  <!-- s==del-->
+	<button onclick="underline()"><u>U</u></button>
+	<button onclick="sup()">A<sup>a</sup></button>
+	<button onclick="sub()">A<sub>a</sub></button>
+	<button onclick="left()" style="text-align: left;">LEFT</button>
+	<button onclick="center()" style="text-align: center;">CENTER</button>
+	<button onclick="right()" style="text-align: right;">RIGHT</button>
+	
+	<button onclick="cut()">CUT</button>
+	<button onclick="paste()">PASTE</button>
+	<button onclick="delet()">DELETE</button>
+	<button onclick="undo()">UNDO</button>
+	<button onclick="redo()">REDO</button>
+	<button onclick="foreColor()">foreColor</button>
+	<button onclick="backColor()">backColor</button>
+	<button onclick="insertImage()">insertImage</button>
+	<button onclick="selectAll()">selectAll</button>
+</header>
+<div class="editable" contenteditable="true" spellcheck="false"></div>
+</body>
+</html>

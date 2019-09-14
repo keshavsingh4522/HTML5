@@ -1,0 +1,12 @@
+{
+  "name": "menubar_control",
+  "version": "1.0.0",
+  "description": "hi,how are you?",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": ["keshav","keshav singh"],
+  "author": "keshav",
+  "license": "ISC"
+}
