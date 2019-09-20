@@ -1,0 +1,12 @@
+{
+  "name": "keshav",
+  "version": "1.0.0",
+  "description": "keshav singh is best in self life",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "keshav singh",
+  "license": "ISC"
+}
