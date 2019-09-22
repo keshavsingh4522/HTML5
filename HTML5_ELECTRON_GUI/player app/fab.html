@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//browser comaptibility
+	window.indexedDB=window.indexedDB||window.webkitIndexedDB||window.mozIndexedDB||window.msIndexedDB;
+	// take permission for read write
+	window.IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction||window.mozIDBTransaction||window.msIDBTransaction;
+	// key permission
+	window.IDBKeyRange=window.IDBKeyRange||window.webkitIDBKeyRange||window.mozIDBKeyRange||window.msIDBKeyRange;
+	if(!window.indexedDB)
+	{
+		document.write('update your browser');
+	}
+	else
+	{
+		var database=window.indexedDB.open('keshav');
+		database.onsuccess=function(){
+			var idb=this.result;
+			var permission=idb.transaction('keshav');
+			var access_done=permission.objectStore('keshav');
+			var json_data=access_done.get('keshav');
+			if(json_data){
+				alert('data available')
+			}
+			else
+			{
+				alert('data not available')
+			}
+		}
+	}
+</script>
+</html>

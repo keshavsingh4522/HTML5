@@ -1,0 +1,16 @@
+{
+  "name": "player_app",
+  "version": "1.0.0",
+  "description": "for listening song",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "audio",
+    "music",
+    "song"
+  ],
+  "author": "keshav",
+  "license": "ISC"
+}
