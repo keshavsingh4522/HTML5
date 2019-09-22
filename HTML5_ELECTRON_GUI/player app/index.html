@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+	<style type="text/css">
+		*
+		{
+			box-sizing: border-box;
+		}
+		.player
+		{
+			width:300px;
+			height:480px;
+			border-top:30px groove red;
+			border-bottom:30px ridge red;
+			border-radius: 15px;
+			position: absolute;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			box-shadow: 0px 0px 10px #ddd;
+		}
+		@media(max-width:500px)
+		{
+			body
+			{
+				background-color: rgba(0,89,76,0.5);
+			}
+			#player
+			{
+				width: 100%;
+			}
+		}
+		header
+		{
+			width: 100%;
+			height: 70%;
+			background-image: url('https://www.kenyon.edu/files/pages/music-2.jpg');
+			background-size: cover;
+			position: relative;
+		}
+		footer
+		{
+			width: 100%;
+			height: 30%;
+			background-image: url('http://melodrive.com/blog/wp-content/uploads/2017/02/score.jpg');
+			background-size: cover;
+		}
+		#upload
+		{
+			cursor: pointer;
+		}
+		#controls
+		{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0.5);
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			position: relative;
+		}
+		#play_background
+		{
+			width:40px;
+			height: 40px;
+			background-color: white;
+			border-radius: 80%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#progress
+		{
+			width: 70%;
+			height: 5px;
+			/*background-color: yellow;*/
+			border-radius: 5px;
+			position:absolute;
+			top: 0px;
+		}
+		header img
+		{
+			border-radius: 5px;
+			margin:10px;
+		}
+		#filename
+		{
+			color: white;
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translate(-50%);
+		}
+		#duration
+		{
+			position: absolute;
+			bottom: 0px;
+			color: white;
+		}
+		#volume_box
+		{
+			position: absolute;
+			right: -39px;
+			top: -50px;
+			color: white;
+			transform: rotate(90deg);
+		}
+		#volume
+		{
+			-webkit-appearance: none;
+			width: 100%;
+			height: 20px;
+			background-color: inherit;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+			border-radius: 10px;
+		}
+		#volume:hover {
+			opacity: 1;
+		}
+
+		#volume::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			/*background: #4CAF50;*/
+			background: url('https://img.icons8.com/cotton/2x/speaker.png');
+			transform: rotate(180deg);
+			background-size: cover;
+			cursor: pointer;
+		}
+
+		#volume::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			background: url('https://img.icons8.com/cotton/2x/speaker.png');
+			background-size: cover;
+			transform: rotate(180deg);
+			/*background: #4CAF50;*/
+			cursor: pointer;
+		}
+		#slider.ui-slider,#slider .ui-slider-range
+		{
+			border:none;
+			border-radius: 40px !important;
+		}
+		#slider .ui-slider-range
+		{
+			background-image: linear-gradient(to right,rgba(23,56,127),rgba(222,45,324));
+		}
+		#slider .ui-slider-handle
+		{
+			opacity: 1;
+			width: 13px;
+			height: 13px;
+			border-radius: 50%;
+			background-image: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,1));
+			margin-top:5px;
+			margin-left: -6px;
+			border:none;
+			outline: none;
+		}
+		#play_back,#play_for
+		{
+			opacity: 0.5;
+		}
+		/*fab icon on share*/
+		#share_whatsapp
+		{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			cursor: pointer;
+		}
+		.keshav
+		{
+			width: 40px;
+  			height: 40px;
+  			box-sizing: border-box;
+  			display: inline-block;
+  			border-radius: 50%;
+  			background-color: white;
+  			background-size: cover;
+  			margin-bottom: 5px;
+  			cursor: pointer;
+  		}
+  		.keshav:hover
+  		{
+  			box-shadow: 0px 0px 3px yellow;
+  		}
+  		.fab_icon
+  		{
+  			width: auto;
+  			height: auto;
+  			position: absolute;
+  			right: 7px;
+  			top:40px;
+  			display: flex;
+  			flex-direction: column;
+  			z-index: 1;
+  		}
+  		#repeat_song
+  		{
+  			position: absolute;
+  			color: white;
+  			font-size: 20px;
+  			top: -4px;
+  			left: 15px;
+  			opacity: 0.5;
+  		}
+	</style>
+</head>
+<body>
+	<div class="player">
+		<header>
+			<!-- <div id="upload_box"> -->
+				<img src="https://www.shareicon.net/download/2017/07/10/888287_music_512x512.png" width="40" height="40" id="upload">
+				<h4 id="filename"></h4>
+				<!-- start share option  coding-->
+				<a id="share_whatsapp" style="color: white;font-size: 30px"><i class="fa fa-share"></i></a>
+				<div class="fab_icon">
+					<a href="whatsapp://send?text=https://keshavsingh.ml/player_app" data-action="share/whatsapp/share" class="keshav" style="background-image: url('https://seeklogo.com/images/W/whatsapp-icon-logo-6E793ACECD-seeklogo.com.png');"></a>
+
+					<a class="keshav" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png');"></a>
+					<a class="keshav" style="background-image: url('https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/facebook_circle-512.png');"></a>
+					<a class="keshav" style="background-image: url('https://cdn3.iconfinder.com/data/icons/social-network-round-gloss-shine/512/Twitter_Social-Network-Communicate-Page-Curl-Effect-Circle-Glossy-Shadow-Shine.png');"></a>
+					<a class="keshav" style="background-image: url('https://icons-for-free.com/iconfiles/png/512/google+mail+icon-1320192249286867468.png');"></a>
+				</div>
+				<!-- end share option coding -->
+				<!-- <input type="file" accept="audio/*" id="inp_up"> -->
+			<!-- </div> -->
+		</header>
+		<footer>
+			<div id="controls">
+				<i class="fa fa-repeat" id="repeat_song"></i>
+				<i class="fa fa-backward" id="play_back" style="color: white;font-size: 30px;"></i>
+				<div id="play_background">
+					<i class="fa fa-play-circle" id="play_pause" style="color: purple;font-size: 70px;"></i>
+				</div>
+				<i class="fa fa-forward" id="play_for" style="color: white;font-size: 30px;"></i>
+				<div id="progress">
+	                    <div id="slider" style="background-image: linear-gradient(to right, rgba(25,34,137,0.6), rgba(135,234,227,1));"></div>
+				</div>
+				<div id="volume_box">
+					<!-- <i class="fa fa-volume-down"></i> -->
+					<input type="range" name="volume" id="volume" min="0" max="10">
+					<!-- <i class="fa fa-volume-up"></i> -->
+				</div>
+				<div id="duration">
+					<span id="played_duration"></span>
+					<span id="total_duration"></span>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<script>
+		$(document).ready(function(){
+			//list of gif
+			background_gif=['https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f73756e62757273742e676966'];
+			// share coding
+			$(".fab_icon").hide();
+			$("#share_whatsapp").on('click',function(){
+				$(".fab_icon").slideToggle(1000);
+			});
+			$(".keshav").on('click',function(){
+				$(".fab_icon").delay(1000).slideToggle(1000);
+			});
+			//duration slider
+			$('#slider').slider({
+				disabled:true,
+			});
+			var list=new Array();
+			var list_name=new Array();
+			var i=0;
+		$('#upload').on("click",function(){
+			var input=document.createElement('INPUT');
+			input.type='file'
+			input.accept='audio/*'
+			input.click()
+			input.onchange=function(){
+				//alert(input.value.replace(/.*(\/|\\)/,'').split('.')[0])
+				if(list.length!=0)
+				{
+					list.push(URL.createObjectURL(input.files[0]))
+					list_name.push(input.files[0].name.replace(/%20/g, ' '))
+					alert('audio is playing')
+				}
+				else
+				{
+					list.push(URL.createObjectURL(input.files[0]))
+					list_name.push(input.files[0].name.replace(/%20/g, ' '))
+					document.getElementById('filename').innerHTML=list_name[0]
+					var audio=document.createElement('AUDIO')
+					audio.src=list[0]
+					audio.volume=0.5
+					audio.loop=false
+					// document.querySelector('header').style.backgroundImage='url('+audio.poster+')+'
+					alert('aduio is not playing')
+				}
+				audio.play()
+				var minutes=""
+				var seconds=""
+				var dur=""
+				// next play song
+				function next()
+				{
+					if(i+1<list.length)
+					{
+						i+=1
+						audio.src=list[i]
+			 	    	document.getElementById('filename').innerHTML=list_name[i]
+		    		    audio.play()
+		    		    document.querySelector('header').style.backgroundImage="url("+background_gif[Math.floor(Math.random()*background_gif.length)]+")"
+		    		}
+		    	}
+		    	// back play song
+		    	function prev()
+		    	{
+		    		if(i>0)
+				    {
+				   		i-=1
+				   		audio.src=list[i]
+				   		document.getElementById('filename').innerHTML=list_name[i]
+				   		audio.play()
+				   		document.querySelector('header').style.backgroundImage="url("+background_gif[Math.floor(Math.random()*background_gif.length)]+")"
+			    	}
+		    	}
+		    	// loop of song
+		    	$("#repeat_song").on('click',function(){
+		    		if(audio.loop==true)
+		    		{
+		    			document.querySelector('#repeat_song').style.opacity='0.5'
+		    			audio.loop=false
+		    		}
+		    		else
+		    		{
+		    			document.querySelector('#repeat_song').style.opacity='1'
+		    			audio.loop=true
+		    		}
+		    	});
+		    	// song duration increasing repeatidly
+		    	  /*audio.ontimeupdate*/
+				setInterval(function(){
+					 minutes = "0" + Math.floor(audio.currentTime / 60);
+                     seconds = "0" + Math.floor(audio.currentTime - minutes * 60);
+                     dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+			    	document.getElementById('played_duration').innerHTML=dur+' / ';
+			    	$('#slider').slider('value',Math.floor(audio.currentTime));
+			    	if(audio.ended)//audio.currentTime==audio.duration
+			    	{
+			    		next()
+			    	}
+			    },1000)
+				// slider for duration of song
+				audio.addEventListener("loadedmetadata", function(_event) {
+					 minutes = "0" + Math.floor(audio.duration / 60);
+                     seconds = "0" + Math.floor(audio.duration - minutes * 60);
+                     dur = minutes.substr(-2) + ":" + seconds.substr(-2);
+					document.getElementById('total_duration').innerHTML=dur;
+			    	$('#slider').slider({
+			    		disabled:false,
+			    		min:1,
+			    		max:Math.floor(audio.duration)+1,
+			    		range:'max',
+			    	});
+				})
+				$(".ui-corner-all,.ui-slider-handle").click(function(){
+					audio.currentTime=$('#slider').slider('value');
+				});
+				// volume of audio
+				document.getElementById('volume').value=5;
+				document.getElementById('volume').oninput=function(){
+					audio.volume=this.value/10;
+				}
+			    // when we play song what happened
+				audio.onplay=function(){
+					document.querySelector('header').style.backgroundImage="url("+background_gif[Math.floor(Math.random()*background_gif.length)]+")"
+					document.querySelector('#play_pause').className='fa fa-pause-circle'
+					document.querySelector('#play_pause').onclick=function(){
+						audio.pause();
+					}
+					// forward play
+				    document.querySelector("#play_for").onclick=function(){
+				    	// alert(audio.currentSrc);
+				    	next()
+				    }
+				    //backward play
+				    document.querySelector("#play_back").onclick=function(){
+				    	// alert(audio.currentSrc);
+				    	prev()
+				    }
+
+				}
+				// on stop song what happend
+				audio.onpause=function(){
+					document.querySelector('header').style.backgroundImage="url('https://www.kenyon.edu/files/pages/music-2.jpg')";
+					document.querySelector('#play_pause').className='fa fa-play-circle'
+					document.querySelector('#play_pause').onclick=function(){
+						audio.play()
+					}
+				}
+			}
+		})
+		});
+	</script>
+	
+</body>
+</html>

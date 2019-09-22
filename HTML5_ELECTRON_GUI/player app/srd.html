@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <style type="text/css">
+  	.keshav
+  	{
+  		width: 50px;
+  		height: 50px;
+  		box-sizing: border-box;
+  		display: inline-block;
+  		border-radius: 50%;
+  		background-color: green;
+  	}
+  	.keshav:hover
+  	{
+  		box-shadow: 0px 0px 3px black;
+  	}
+  </style>
+</head>
+<body>
+	<!-- <i class="keshav"></i>
+	<a href="https://twitter.com/intent/tweet?screen_name=Keshavsingh4522&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @Keshavsingh4522</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<a class="twitter-timeline" href="https://twitter.com/Keshavsingh4522?ref_src=twsrc%5Etfw">Tweets by Keshavsingh4522</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<a href="https://twitter.com/Keshavsingh4522?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-show-image="false" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+</body>
+<script type="text/javascript">
+	//browser comaptibility
+	window.indexedDB=window.indexedDB||window.webkitIndexedDB||window.mozIndexedDB||window.msIndexedDB;
+	// take permission for read write
+	window.IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction||window.mozIDBTransaction||window.msIDBTransaction;
+	// key permission
+	window.IDBKeyRange=window.IDBKeyRange||window.webkitIDBKeyRange||window.mozIDBKeyRange||window.msIDBKeyRange;
+	if(!window.indexedDB)
+	{
+		alert('update')
+	}
+	else
+	{
+		var database=window.indexedDB.open('keshav',1);
+		database.onsuccess=function(){
+			console.log(this.result)
+		}
+		database.onupgradeneeded=function(){
+			var data={name:'keshav',roll:78}
+			var idb=this.result
+			var object=idb.createObjectStore('student',{keyPath:'name'})
+			object.add(data)
+		}
+	}
+</script>
+</html>
