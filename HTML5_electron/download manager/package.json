@@ -1,0 +1,15 @@
+{
+  "name": "idm",
+  "version": "1.0.0",
+  "description": "internet download manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "keywords": [
+    "internet",
+    "download"
+  ],
+  "author": "keshav",
+  "license": "ISC"
+}

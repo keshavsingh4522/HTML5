@@ -1,0 +1,17 @@
+*:focus
+{
+	box-shadow: none !important;
+}
+html
+{
+	overflow-y: hidden;
+}
+/*loader animation*/
+.loader
+{
+	animation:loade .5s linear infinite;
+}
+@keyframes loade{
+	0%{transform: rotate(0deg);}
+	100%{transform: rotate(360deg);}	
+}
