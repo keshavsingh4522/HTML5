@@ -11,5 +11,5 @@ function create_window(){
 	})
 	page.setMenuBarVisibility(false)
 	// page.loadFile('./asset/index.html')
-	page.loadURL('https://wapinstitute.com')
+	page.loadFile('./asset/index.html')
 }
