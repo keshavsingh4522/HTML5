@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta name="viewport" item="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/school.css">
+	<script src="js/school.js"></script>
+</head>
+<body>
+<div class="dark d-flex justify-content-center align-items-center">
+  <div class="container d-flex">
+	<!-- start left side -->
+	<div class="card w-25 mr-4 y-0">
+		<div class="card-header bg-warning">
+			SCHOOL MANAGEMENT 1.0
+		</div>
+		<div class="card-body w-100 d-flex justify-content-center" style="background-image: url(images/pic.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
+			<!-- <img src="images/pic.jpg" height="200"> -->
+		</div>
+		<div class="card-footer bg-warning">
+			CONTACT US
+		</div>
+	</div>
+	<!-- end left side -->
+	<!-- start right side -->
+	<div>
+		<ul class="nav nav-tabs">
+			<li class="nav-content"><a href="#register" class="nav-link active" data-toggle='tab'>Rigister</a></li>
+			<li class="nav-content"><a href="#login" class="nav-link" data-toggle='tab'>Login</a></li>
+		</ul>
+		<div class="tab-content bg-light p-4" style="width: 600px;overflow: hidden;">
+			<!-- start register coading -->
+			<div id="register" class="tab-pane active animated slideInDown slower">
+				<form>
+
+					<div class="input-group mb-4">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning">Enter school name</span>
+					   </div>
+					   <input type="text" name="name" class="form-control" placeholder="enter school name" id="sname">
+					</div>
+
+					<div class="input-group mb-4">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning">Enter Slogan</span>
+					   </div>
+					   <input type="text" name="name" class="form-control" placeholder="enter slogan" id="slogan">
+					</div>
+
+					<div class="input-group mb-4">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning">Phone number</span>
+					   </div>
+					   <input type="number" name="phone_1" class="form-control" placeholder="phone number 1" id="pnum1">
+					   <input type="number" name="phone_2" class="form-control" placeholder="phone number 2" id="pnum2">
+					</div>
+					
+					<div class="input-group mb-4">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning">Email Id</span>
+					   </div>
+					   <input type="email" name="name" class="form-control" placeholder="ex:. k@gmail.com" id="email">
+					</div>
+					
+					<div class="input-group mb-4">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning">Website</span>
+					   </div>
+					   <input type="text" name="name" class="form-control" placeholder="ex:. https://keshavsingh.ml" id="website">
+					</div>
+				<input type="submit" value="Submit now" class="form-control w-25 bg-info">
+				</form>
+			</div>
+			<!-- end register coading -->
+
+			<!-- start login coading -->
+			<div id="login" class="tab-pane"><h1>Login</h1></div>
+			<!-- end login coading -->
+		</div>
+	</div>
+	<!-- end right side -->
+  </div>
+</div>
+</body>
+</html>
