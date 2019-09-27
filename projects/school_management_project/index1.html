@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+    <meta name="viewport" item="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/school1.css">
+	
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</head>
+<body>
+<div class="dark d-flex align-items-center">
+	<div class="container w-75 h-75">
+		<div class="row">
+			<div class="col-md-4">
+				<ul class="list-group">
+					<li class="list-group-item text-center bg-warning font-weight-bold">SCHOOL MANAGEMENT 1.0</li>
+					<li class="list-group-item px-0 py-0"><img src="images/pic.jpg" width="100%" height="380"></li>
+					<li class="list-group-item text-center bg-warning font-weight-bold"><a href="#" class="list-group-link text-dark">CONTACT US</a></li>
+				</ul>
+			</div>
+			<div class="col-md-8">
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a href="#register" class="nav-link" data-toggle='tab'>Register</a></li>
+					<li class="nav-item"><a href="#login" class="nav-link active" data-toggle='tab' id="login_click">Login</a></li>
+				</ul>
+				<div class="tab-content" style="overflow-x: hidden;">
+					<div class="tab-pane animated slideInLeft faster" id="register"> 
+						<form id="register-form">
+
+					<div class="input-group mb-2 mt-3">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Enter school name</span>
+					   </div>
+					   <input type="text" name="name" class="form-control border border-left-0" placeholder="enter school name" required='required' id='school-name'>
+					</div>
+
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Enter Slogan</span>
+					   </div>
+					   <input type="text" name="name" class="form-control  border border-left-0" placeholder="enter slogan" id="tag-line">
+					</div>
+
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Phone number</span>
+					   </div>
+					   <input type="number" name="phone_1" class="form-control border border-left-0" placeholder="phone number 1" required='required' id="phone">
+					</div>
+					
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Email Id</span>
+					   </div>
+					   <input type="email" name="name" class="form-control border border-left-0" placeholder="ex:. k@gmail.com" required='required' id="email">
+					</div>
+
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Password</span>
+					   </div>
+					   <input type="password" name="password" class="form-control border border-left-0" placeholder="password" required='required' id="password">
+					</div>
+					
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">Website</span>
+					   </div>
+					   <input type="text" name="name" class="form-control border border-left-0" placeholder="ex:. https://keshavsingh.ml" id="website">
+					</div>
+
+					<div class="input-group mb-2">
+					   <div class="input-group-prepend">
+						    <span class="input-group-text bg-warning border-0">enter address here</span>
+					   </div>
+					   <textarea class="form-control  border border-left-0" id="address"></textarea>
+					</div>
+					<div class="alert w-75 float-left mt-3 pt-2 d-none" id="message">
+						<i class='fa fa-close close text-danger' data-dismiss='alert'></i>
+					</div>
+				<button type="submit" class="btn btn-success mt-3 float-right">Submit now</button>
+				</form>
+					</div>
+					<!-- login -->
+					<div class="tab-pane active animated slideInLeft faster" id="login"> 
+						<form id="login_form">
+							<div class="input-group my-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text bg-info border-0 text-light">Username</span>
+								</div>
+								<input type="text" class="border-left-0 form-control" name="username" placeholder="youreamil@gmail.com" id="login_username">
+							</div>
+							<div class="input-group mb-4">
+								<div class="input-group-prepend">
+									<http://localhost/code/index1.html?username=root&username=16189251span class="input-group-text bg-info border-0 text-light">Password</span>
+								</div>
+								<input type="password" class="border-left-0 form-control" name="username" placeholder="email" id="login_password">
+							</div>
+							<!-- alert message -->
+							<div class="alert d-none float-left w-75" id="login_alert">
+								<i class='fa fa-close close text-danger' data-dismiss='alert'></i>
+							</div>
+							<button type="submit" class="btn btn-success float-right">Login --></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- delete confirmation modal -->
+<div class="modal animated slideInDown" id="delete_modal">
+	<div class="modal-dialog">
+		<div class="modal-content" id="delete_message">
+			<div class="modal-header">
+				<h5 class="modal-title">Delete Notice</h5>			        
+			</div>
+			<div class="modal-body">
+				Do you delete previous record?
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="delete_db" class="btn btn-danger">Delete</button>
+				<button type="button" class="btn btn-primary" id="modal_close" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	// history.pushState(null,null,'sign-in-up-page')
+// check compatiability of browse
+window.indexedDB=window.indexedDB||window.webkitIndexedDB||window.mozIndexedDB||window.msIndexedDB;
+//take permission of read and write
+window.IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction||window.mozIDBTransaction||window.msIDBTransaction;
+//key permission
+window.IDBKeyRange=window.IDBKeyRange||window.webkitIDBKeyRange||window.mozIDBKeyRange||window.msIDBKeyRange;
+if(!window.indexedDB)
+{
+	alert('please upgrade your browser');
+}
+else
+{
+	$(document).ready(function(){
+	$("#register-form").on('submit',function(){
+		var check_database=window.indexedDB.databases()
+		check_database.then(function(db_list){
+			if(db_list.length==0)
+			{
+				register()
+			}
+			else
+			{
+				$("#message").removeClass('d-none')
+				$("#message").addClass('alert-danger')
+				$("#message").append('<b>Registeration failed </b> <a href="https://keshavsingh.ml">please purchase our multi version</a> <i class="fa fa-trash"  title="to maintain another school detail please remove exist school detail" id="tooltip" style="cursor:pointer;"></i>')
+				$("#tooltip").tooltip({
+					toggle:'tooltip'
+				})
+				$("#tooltip").click(()=>{
+					$('#delete_modal').modal()
+					$("#delete_db").click(()=>{
+						var all_db=window.indexedDB.databases()
+						all_db.then((all_db_list)=>{
+							var del_db=window.indexedDB.deleteDatabase(all_db_list[0].name)
+							del_db.onsuccess=()=>{
+								$("#register-form").trigger('reset')
+								$("#message").addClass('d-none')
+								$("#delete_message").html('previous data deleted successfully')
+							}
+						})
+					})
+				})
+			}
+		})
+	    return false;
+	  });
+	function register(){
+		var school_name=$("#school-name").val();
+	    var tag_line=$("#tag-line").val();
+	    var email=$("#email").val();
+	    var website=$("#website").val();
+	    var address=$("#address").val();
+	    var password=$("#password").val()
+	    var database=window.indexedDB.open(school_name);
+	    var data={
+	    		school_name:school_name,
+	    		tag_line:tag_line,
+	    		email:email,
+	    		website:website,
+	    		address:address,
+	    		password:password,
+	    	};
+	    database.onupgradeneeded=function(){
+	    	var idb=this.result;
+	    	var object=idb.createObjectStore('about_school',{keyPath:'school_name'});
+	    	object.add(data);
+	    }
+	    database.onsuccess=function(){
+	    	$("#message").removeClass('d-none');
+	    	$("#message").addClass('alert-success')
+	    	$("#message").append("<b>Success !</> dear admin please login...");
+	    	// document.querySelector('#register-form').reset();
+	    	$('#register-form').trigger('reset');
+	    	setTimeout(d_none,2000)
+	    	function d_none(){
+	    		$("#message").addClass('d-none')
+	    		$("#message").removeClass('alert-success')
+	    		$("#login_click").trigger('click')
+	    	}
+	    }
+	    database.onerror=function(){
+	    	$("#message").removeClass('d-none');
+	    	$("#message").addClass('alert-warning');
+	    	$("#message").append('<b>Oops !</b> something wrong please contact 9982761929...');
+	    }
+	}
+    });
+}
+// login session
+$(document).ready(function(){
+	$("#login_form").submit(function(){
+		var username=$("#login_username").val()
+		var password=$("#login_password").val()
+		var data={
+			username:username,
+			password:password
+		}
+		var json_data=JSON.stringify(data)
+		window.sessionStorage.setItem('login',json_data)
+		if(sessionStorage.getItem('login')!=null)
+		{
+			var user_database=window.indexedDB.databases()
+			user_database.then(function(pending_object){
+				for(var i=0;i<pending_object.length;i++)
+				{
+					var db_name=pending_object[i].name;
+		     	    var database=window.indexedDB.open(db_name);
+					database.onsuccess=function(){
+						var idb=this.result;
+						console.log(idb)
+						var permission=idb.transaction("about_school","readwrite")
+						var access=permission.objectStore('about_school')
+						var json_data=access.get(db_name)
+						json_data.onsuccess=function(){
+							var user=this.result
+							if(user)
+							{
+								var db_username=user.email
+								var db_password=user.password
+								var session_data=JSON.parse(sessionStorage.getItem('login'))
+								if(session_data.username==db_username)
+								{
+									if(session_data.password==db_password)
+									{
+										window.location.href='success/success.html'
+									}
+									else
+									{
+										// alert('wrong password')
+										$("#login_alert").removeClass('d-none')
+										$("#login_alert").addClass('alert-warning')
+										$("#login_alert").append('password <b> wrong </b>')
+									}
+								}
+								else
+								{
+									// alert('user not found')
+									$("#login_alert").removeClass('d-none')
+									$("#login_alert").addClass('alert-warning')
+									$("#login_alert").append('user <b> not found </b>')
+								}
+							}
+							else
+							{
+								// alert('key not found')
+								$("#login_alert").removeClass('d-none')
+								$("#login_alert").addClass('alert-danger')
+								$("#login_alert").append('key <b> not found </b>')
+							}
+						}
+					}
+					
+				}					
+			})
+		}
+		else
+		{
+			$("#login_alert").removeClass('d-none')
+			$("#login_alert").addClass('alert-danger')
+			$("#login_alert").append('data submition <b>failed</b>')
+			setTimeout(function(){
+				$("#login_alert").addClass('d-none');
+				$("#login_form").trigger('reset');
+			},2000)
+		}
+		return false
+	})
+})
+</script>
+</body>
+</html>

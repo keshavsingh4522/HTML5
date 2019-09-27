@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang=en-US>
+<head>
+	<title>success</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<script>
+	if(sessionStorage.getItem('login')==null)
+	{
+		if(navigator.onLine)
+		{
+			window.location.href="https://keshavsingh.ml"
+		}
+		else
+		{
+			alert('no internet connection')
+		}
+	}
+	else
+	{
+		alert('successfull login')
+	}
+	// window.onload=function(){
+	// 	history.pushState(null,null,'welcome-to-my-page')
+	// 	window.onpopstate=function()
+	// 	{
+	// 		history.forward()
+	// 	}
+	// }
+	// if(navigator.onLine)
+	// {
+	// 	alert('online')
+	// }
+	// else
+	// {
+	// 	alert('offline')
+	// }
+</script>
+<h1>welcome to my page</h1>
+</body>
+</html>
