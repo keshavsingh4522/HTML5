@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang=en-US>
+<head>
+	<title>success</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/welcome.css">
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../js/popper.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+    <script src="js/welcome.js"></script>
+</head>
+<body class="dark">
+<script>
+	if(sessionStorage.getItem('login')==null)
+	{
+			window.location.href="https://keshavsingh.ml"
+	}
+	else
+	{
+		// alert('successfull login')
+	}
+	</script>
+<div class="dark container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9 py-4 mx-auto">
+			<div class="row">
+				<div class="col-md-6 bg-white">
+				   <div>	
+					<img src="../images/check_fee.png" style="position: absolute;top: 0;right: 0;height: 40px;cursor: pointer;" alt="fee-menu" id="fee_menu">
+					<h5 class="text-center my-4">SET FEE FOR CLASSES</h5>
+					<input type="text" name="class_name" class="form-control mb-4 class_name" placeholder="enter class name ex:- 7">
+					<div id="add_grp">
+					<div class="input-group mb-4">
+						<input type="text" name="hostel-name" class="form-control border-right-0 course_name" placeholder="hostel-name">
+						<input type="text" name="hostel-fee" class="form-control border-right-0 course_fee" placeholder="hostel-fee ex:- 5000">
+						<div class="input-group-append">
+							<span class="input-group-text bg-warning">Monthly</span>
+						</div>
+					</div>
+				    </div>
+					<center>
+					<div class="btn-group mb-4">
+						<button class="btn bg-primary text-light" id="add_btn"><i class="fa fa-plus"></i> Add Field</button>
+						<button class="btn bg-danger text-light" id="set-fee-btn">Set Fee Now</button>
+				    </div>
+				    </center>
+				   </div>
+				</div>
+				<div class="col-6">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- fee modal -->
+<div class="modal animated slideInDown" id="fee_modal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header bg-warning">
+				<h4 class="mx-auto">Fee Structure</h4>
+			</div>
+			<div class="modal-body" id="show_fee">
+				
+			</div>
+			<div class="modal-footer bg-warning">
+				<button class="btn btn-light mx-auto" onclick="window.print()">Print</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+//add menu
+$(document).ready(()=>{
+	$("#add_btn").click(()=>{
+		$("#add_grp").append('<div class="input-group mb-4"><input type="text" name="hostel-name" class="form-control border-right-0 course_name" placeholder="hostel-name"><input type="text" name="hostel-fee" class="form-control border-right-0 course_fee" placeholder="hostel-fee ex:- 5000"><div class="input-group-append"><span class="input-group-text bg-warning">Monthly</span></div></div>')
+	});
+});
+// databse
+$(document).ready(()=>{
+
+window.indexedDB=window.indexedDB||window.webkitIndexedDB||window.mozIndexedDB||window.msIndexedDB;
+window.IDBTransaction=window.IDBTransaction||window.webkitIDBTransaction||window.mozIDBTransaction||window.msIDBTransaction;
+window.IDBKeyRange=window.IDBKeyRange||window.webkitIDBKeyRange||window.mozIDBKeyRange||window.msIDBKeyRange;
+
+	$("#set-fee-btn").click(()=>{
+		var class_name=$(".class_name").val();
+		var course_fee=[];
+		var course_name=[];
+		var i=0;
+		$(".course_name").each(function(i){
+			course_name[i]=$(this).val()
+		});
+		$(".course_fee").each(function(i){
+			course_fee[i]=$(this).val();
+		});
+
+		var fee_object={
+			class_name:class_name,
+			course_name:course_name,
+			course_fee:course_fee,
+		}
+		alert(fee_object.course_name)
+		// create database
+		var db_name=sessionStorage.getItem('db_name')
+		var db=window.indexedDB.open(db_name)
+		db.onsuccess=function(){
+			var idb=this.result
+			var permission=idb.transaction('fee','readwrite')
+			var access=permission.objectStore('fee')
+			console.log(fee_object)
+			var fee_object_store=access.add(fee_object)
+			fee_object_store.onsuccess=()=>{
+				alert('success')
+			}
+			fee_object_store.onerror=()=>{
+				alert('error')
+			}
+		// 	var object=idb.createObjectStore()
+		// 	object.add(fee_object)
+		}
+	})
+});
+
+// show menu
+$(document).ready(()=>{
+	$("#fee_menu").click(()=>{
+		$("#show_fee").html('')
+		$("#fee_modal").modal()
+		var db_name=window.sessionStorage.getItem('db_name')
+		var database=window.indexedDB.open(db_name)
+		database.onsuccess=function(){
+			var idb=this.result;
+			var permission=idb.transaction('fee','readwrite')
+			var access=permission.objectStore('fee')
+			var all_keys=access.getAllKeys()
+			all_keys.onsuccess=function(){
+				for(var i=0;i<this.result.length;i++)
+				{
+					console.log(this.result[i])
+					var data=access.get(this.result[i])
+					data.onsuccess=function(){
+						var fee=this.result
+					// console.log(fee.class_name)
+					// console.log(fee.course_name)
+					// console.log(fee.course_fee)
+					// element creating
+					var ul=document.createElement('UL')
+					ul.className='nav nav-tabs'
+					var li=document.createElement('LI')
+					li.className="nav-item"
+					var a=document.createElement('A')
+					a.className='nav-link active'
+					a.href='#'
+					a.innerHTML="Class - "+fee.class_name
+					li.append(a)
+					ul.append(li)
+					$("#show_fee").append(ul)
+					// table creation for each class
+					// var div=document.createElement('DIV');
+					// div.className='tab-content'
+					var table=document.createElement('TABLE');
+					var tr_for_th=document.createElement('TR')
+					var tr_for_td=document.createElement('TR')
+					table.className='table border border-top-0 text-center'
+
+					// th
+					for(var j=0;j<fee.course_name.length;j++)
+					{
+					    var th=document.createElement('TH')
+					    th.className='border-0'
+						th.innerHTML=fee.course_name[j]
+						tr_for_th.append(th)
+					}
+					var th=document.createElement('TH')
+					    th.className='border-0'
+						th.innerHTML='Edit'
+						tr_for_th.append(th)
+					var th=document.createElement('TH')
+					    th.className='border-0'
+						th.innerHTML='Delete'
+						tr_for_th.append(th)
+					table.append(tr_for_th)
+					// td
+					for(var j=0;j<fee.course_fee.length;j++)
+					{
+						var td=document.createElement('TD')
+						td.innerHTML=fee.course_fee[j]
+						td.className='border-0'
+						tr_for_td.append(td)
+					}
+					// edit fee
+					var td=document.createElement('TD')
+						td.className='border-0'
+						td.innerHTML='<i class="fa fa-edit"></i>'
+						//var i=document.createElement('I')
+						//i.className='fa fa-edit'
+						//td.append(i)
+						tr_for_td.append(td)
+						td.onclick=()=>{
+							// alert(fee.class_name)
+							var table =td.parentElement.parentElement;
+							var ul=table.previousSibling;
+							var a=ul.getElementsByTagName('a')
+							$(".class_name").val(a[0].innerHTML.replace(/Class - /g,''))
+							var tr=table.getElementsByTagName('TR')
+							var th=tr[0].getElementsByTagName('th')
+							var td_t=tr[1].getElementsByTagName('td')
+							var course_f=document.getElementsByClassName('course_fee')
+							var course_n=document.getElementsByClassName('course_name')
+							course_n[0].parentElement.remove()
+							for(var j=0;j<th.length-2;j++)
+							{	
+								$("#add_btn").click()
+								course_n[j].value=th[j].innerHTML
+								course_f[j].value=td_t[j].innerHTML
+								$(".modal").modal('hide')
+							}
+						}
+					//delete fee 
+					var td=document.createElement('TD')
+						td.className='border-0'
+						td.innerHTML='<i class="fa fa-trash"></i>'
+					td.onclick=function(){
+						// alert(fee.class_name)
+						var ul=this.parentElement.parentElement.previousSibling
+						//alert(this.parentElement.parentElement.previousSibling.nodeName)
+						var a=ul.getElementsByTagName('A')
+						var key=a[0].innerHTML.replace(/Class - /g,'')
+						var db=sessionStorage.getItem('db_name')
+						var database=window.indexedDB.open(db)
+						database.onsuccess=function(){
+							var idb=this.result
+							var permission=idb.transaction('fee','readwrite')
+							var access=permission.objectStore('fee')
+							var delete_key=access.delete(key)
+							delete_key.onsuccess=function(){
+								td.parentElement.parentElement.previousSibling.remove()
+								td.parentElement.parentElement.remove()
+							}
+						}
+						// table.remove(this.parentElement)
+						// $("a.nav-link.active").each(function(){
+						// 	if(this.className==fee.class_name)
+						// 	{
+						// 		this.parentElement.remove(this)
+						// 	}
+						// })
+					}
+						//var i=document.createElement('I')
+						//i.className='fa fa-trash'
+						//td.append(i)
+						tr_for_td.append(td)
+					table.append(tr_for_td)
+					$("#show_fee").append(table)
+					}
+				}
+			}
+		}
+	});
+});
+
+</script>
+</body>
+</html>
