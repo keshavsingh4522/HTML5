@@ -84,7 +84,7 @@
 					   <textarea class="form-control  border border-left-0" id="address"></textarea>
 					</div>
 					<div class="alert w-75 float-left mt-3 pt-2 d-none" id="message">
-						<i class='fa fa-close close text-danger' data-dismiss='alert'></i>
+						
 					</div>
 				<button type="submit" class="btn btn-success mt-3 float-right">Submit now</button>
 				</form>
@@ -119,6 +119,9 @@
 <!-- delete confirmation modal -->
 <div class="modal animated slideInDown" id="delete_modal">
 	<div class="modal-dialog">
+		<div class="alert alert-success" id="delete_success_message">
+			<b>Delete Success !</b> now you can register the new school
+		</div>
 		<div class="modal-content" id="delete_message">
 			<div class="modal-header">
 				<h5 class="modal-title">Delete Notice</h5>			        
@@ -157,9 +160,10 @@ else
 			}
 			else
 			{
+				$("#delete_success_message").addClass('d-none')
 				$("#message").removeClass('d-none')
 				$("#message").addClass('alert-danger')
-				$("#message").append('<b>Registeration failed </b> <a href="https://keshavsingh.ml">please purchase our multi version</a> <i class="fa fa-trash"  title="to maintain another school detail please remove exist school detail" id="tooltip" style="cursor:pointer;"></i>')
+				$("#message").html('<i class="fa fa-close close text-danger" data-dismiss="alert"></i><b>Registeration failed </b> <a href="https://keshavsingh.ml">please purchase our multi version</a> <i class="fa fa-trash"  title="to maintain another school detail please remove exist school detail" id="tooltip" style="cursor:pointer;"></i>')
 				$("#tooltip").tooltip({
 					toggle:'tooltip'
 				})
@@ -172,7 +176,9 @@ else
 							del_db.onsuccess=()=>{
 								$("#register-form").trigger('reset')
 								$("#message").addClass('d-none')
-								$("#delete_message").html('previous data deleted successfully')
+								$("#message").removeClass('alert-danger')
+								$('#delete_message').addClass('d-none')
+								$("#delete_success_message").removeClass('d-none')
 							}
 						})
 					})
@@ -201,11 +207,12 @@ else
 	    	var idb=this.result;
 	    	var object=idb.createObjectStore('about_school',{keyPath:'school_name'});
 	    	object.add(data);
+	    	idb.createObjectStore('fee',{keyPath:'class_name'});
 	    }
 	    database.onsuccess=function(){
 	    	$("#message").removeClass('d-none');
 	    	$("#message").addClass('alert-success')
-	    	$("#message").append("<b>Success !</> dear admin please login...");
+	    	$("#message").html("'<i class='fa fa-close close text-danger' data-dismiss='alert'></i><b>Success !</> dear admin please login...");
 	    	// document.querySelector('#register-form').reset();
 	    	$('#register-form').trigger('reset');
 	    	setTimeout(d_none,2000)
@@ -218,8 +225,15 @@ else
 	    database.onerror=function(){
 	    	$("#message").removeClass('d-none');
 	    	$("#message").addClass('alert-warning');
-	    	$("#message").append('<b>Oops !</b> something wrong please contact 9982761929...');
+	    	$("#message").html('<i class="fa fa-close close text-danger" data-dismiss="alert"></i><b>Oops !</b> something wrong please contact 9982761929...');
+	    	setTimeout(d_none,2000)
+	    	function d_none(){
+	    		$("#message").addClass('d-none')
+	    		$("#message").removeClass('alert-warning')
+	    		$("#login_click").trigger('click')
+	    	}
 	    }
+
 	}
     });
 }
@@ -241,6 +255,7 @@ $(document).ready(function(){
 				for(var i=0;i<pending_object.length;i++)
 				{
 					var db_name=pending_object[i].name;
+					window.sessionStorage.setItem('db_name',pending_object[i].name);
 		     	    var database=window.indexedDB.open(db_name);
 					database.onsuccess=function(){
 						var idb=this.result;
@@ -259,7 +274,7 @@ $(document).ready(function(){
 								{
 									if(session_data.password==db_password)
 									{
-										window.location.href='success/success.html'
+										window.location.href='success/welcome.html'
 									}
 									else
 									{
