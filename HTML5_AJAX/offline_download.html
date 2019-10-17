@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<button class="btn btn-primary rounded-0 m-5 border-0" onclick="download()"> Download File Offline</button>
+<i id="result"></i>
+<script>
+window.onload=function(){
+	var db=window.indexedDB.open('downloads')
+	db.onupgradeneeded=function(){
+		var idb=this.result
+		idb.createObjectStore("files",{autoIncrement:true})
+	}
+}
+function download(){
+	var request=new XMLHttpRequest()
+	request.responseType='blob'
+	// audio video pdf text or any file
+	request.open("POST",'1.pdf',true)
+	request.send()
+	request.onreadystatechange=function()
+	{
+		if(this.readyState==4)
+		{
+			if(this.status==200)
+			{
+				var reader=new FileReader()
+				reader.readAsDataURL(this.response)
+				reader.onload=function()
+				{
+					var download_data={
+						"FileName":'sample.mp4',
+						"FileData":this.result
+					}
+					
+					var db=window.indexedDB.open('downloads')
+					db.onsuccess=function()
+					{
+						var idb=this.result
+						var permission=idb.transaction('files','readwrite')
+						var access=permission.objectStore("files")
+						var data=access.add(download_data)
+						data.onsuccess=function()
+						{
+							alert('file added successfullly')
+						}
+					}
+				}
+			}
+			else if(this.status==404)
+			{
+				document.querySelector('#result').innerHTML="<b>Sorry File is not available on server</b>"
+			}
+		}
+	}
+	request.onprogress=function(event)
+	{
+		var percentage=Math.floor(event.loaded/event.total)*100
+		$("#result").html(percentage+'%')
+	}
+	request.onload=function()
+	{}
+}
+</script>
+</body>
+</html>
