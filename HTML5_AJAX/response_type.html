@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<pre>
+	
+     <h1 id="ajax" style="color: cyan;"></h1>
+
+</pre>
+<video id="video" width="700" height="400" controls></video>
+<button id="update">update</button>
+
+</body>
+<script>
+	document.querySelector('#update').onclick=function(){
+		var request=new XMLHttpRequest();
+		request.open('POST','../index.mp4',true);
+		request.responseType='blob';
+		request.send()
+		request.onreadystatechange=function(){
+			if(this.readyState==4)
+			{
+				// check data is present on server or not
+				if(this.status==200)
+				{
+					document.querySelector('#ajax').innerHTML=URL.createObjectURL(this.response);
+					document.querySelector('#video').src=URL.createObjectURL(this.response);
+				}
+				else if(this.status==404)
+				{
+					document.querySelector('#ajax').innerHTML=this.response;
+				}
+			}
+		}
+	}
+</script>
+</html>
