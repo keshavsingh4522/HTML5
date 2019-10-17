@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body class="p-5">
+<div class="container float-left" style="width: 300px;">
+	<form>
+		<label for="country">Country</label>
+		<select class="form-control" id="country">
+			<option>Choose Country</option>
+		</select>
+		<br>
+
+		<label for="state">State</label>
+		<select class="form-control" id="state">
+			<option>Choose State</option>
+		</select>
+		<br>
+
+		<label for="city">City</label>
+		<select class="form-control" id="city">
+			<option>Choose City</option>
+		</select>
+		<br>
+
+	    <div class="input-group">
+		   <div class="input-group-prepend">
+			 <span class="input-group-text" id="code">+xx</span>
+		   </div>
+		   <input type="number" class="form-control" placeholder="9982761929" maxlength="10">
+	    </div>
+	</form>
+</div>
+<script>
+	window.onload=function(){
+		var request=new XMLHttpRequest()
+		request.open('POST','country.json',true)
+		request.send()
+		request.onload=function(){
+			// extract JSON data from file
+			var data=JSON.parse(this.response)
+			// var data=JSON.parse(JSON.stringify(this.response))
+			for(var i=0;i<data.length;i++)
+			{
+				var option=document.createElement('OPTION')
+				option.innerHTML=data[i].country
+				$("#country").append(option)
+
+			}
+			// show country code and state
+			$("#country").on('change',function(){
+				for(i=0;i<data.length;i++)
+				{
+					if(this.value=='Choose Country')
+					{
+						$("#code").html('+xx');						
+					}
+					else if(this.value==data[i].country)
+					{
+						
+						$("#code").html(data[i].code);
+
+						// state name
+						$("#state").html('')
+						var option=document.createElement('OPTION')
+						option.innerHTML="Choose State"
+						$("#state").append(option)
+						for(var j=0;j<data[i].state.length;j++)
+						{
+							var option=document.createElement('OPTION')
+							option.innerHTML=data[i].state[j].name
+							$("#state").append(option)
+						}
+					}
+				}
+			});
+			// city name
+			$("#state").on('change',function(){
+				for(i=0;i<data.length;i++)
+				{
+					for(var j=0;j<data[i].state.length;j++)
+					{
+						if(this.value==data[i].state[j].name)
+						{
+							// city name
+						    $("#city").html('')
+							var option_c=document.createElement('OPTION')
+							option_c.innerHTML="Choose City"
+							$("#city").append(option_c)
+							for(var k=0;k<data[i].state[j].city.length;k++)
+							{
+								var c_option=document.createElement('OPTION');
+								c_option.innerHTML=data[i].state[j].city[k];
+								$("#city").append(c_option);
+							}
+						}
+					}
+				}
+			})
+		}
+	}
+</script>
+</body>
+</html>
