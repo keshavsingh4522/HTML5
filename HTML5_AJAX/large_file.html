@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body
+		{
+			background-image: url('../images/small/02.jpeg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			transition: 1s;
+		}
+	</style>
+</head>
+<body>
+	<div class="progress rounded-0">
+		<div class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-dark"></div>
+	</div>
+<script>
+	window.onload=function()
+	{
+		setTimeout(function(){
+			var request=new XMLHttpRequest()
+			request.open('POST','../images/large/02.jpg',true)
+			request.responseType='blob'
+			request.send()
+			request.onload=function(){
+			    console.log(this.response)
+				var url=URL.createObjectURL(this.response)
+				document.body.style.backgroundImage="url("+url+")";
+				document.body.style.backgroundSize='cover';
+			}
+			request.onprogress=function(event){
+				var w=Math.floor((event.loaded/event.total)*100)
+				$(".progress-bar").css({'width':w+'%'})
+				$(".progress-bar").html(w)
+				if(w==100)
+				{
+					// $(".progress").addClass('d-none')
+				}
+			}
+		},2000)
+	}
+</script>
+</body>
+</html>
