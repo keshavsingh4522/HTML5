@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	button
+    	{
+    		box-shadow: none !important;
+    	}
+    	body
+    	{
+    		overflow: hidden;
+    	}
+    </style>
+</head>
+<body>
+	<div class="container bg-danger p-5">
+
+		<h3 class="text-light text-center">Safe File Downloader</h3>
+		<hr class="bg-light">
+
+		<div class="row ">
+			<div class="col-md-3 mb-2">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<button class="btn p-0 add_audio" name="1.mp3" onclick="download(this)">New Audio Song</button>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped progress-bar-animated audio_progress"></div>
+						</div>
+					</li>
+
+					<li class="list-group-item">
+						<button class="btn p-0 add_video" name="index.mp4" onclick="download(this)">New Video Song</button>
+						<div class="progress">
+							<div class="progress-bar progress-bar-striped progress-bar-animated video_progress"></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="col-md-6 mb-2">
+				<h3 class="text-white text-center video_file_name">keshav singh.mp4</h3>
+				<video class="w-100" controls="controls"></video>
+				<br><br>
+				<h3 class="text-white text-center audio_file_name">keshav singh.mp3</h3>
+				<center><audio  controls="controls"></audio></center>
+			</div>
+			<div class="col-md-3 text-light">
+				<h3>Downloaded Item</h3>
+				<ul class="list-group text-dark" id="downloaded_item" style="overflow: auto;height: 300px;overflow-y: scroll;">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+<script>
+window.onload=function(){
+	var db=window.indexedDB.open('downloads')
+	db.onupgradeneeded=function(){
+		var idb=this.result
+		idb.createObjectStore("files",{autoIncrement:true})
+	}
+	db.onsuccess=function()
+	{
+			var idb=this.result
+			var permission=idb.transaction('files','readwrite')
+			var access=permission.objectStore('files')
+			var all_key=access.getAllKeys()
+			all_key.onsuccess=function(){
+				for(var i=0;i<this.result.length;i++)
+				{
+					var data=access.get(this.result[i])
+					data.onsuccess=function()
+					{
+						var li=document.createElement('LI')
+						li.className="list-group-item"
+						// i=document.createElement('I')
+						// i.className='fa fa-play-circle'
+						// li.appendChild(i)
+						// li.append(this.result.FileName)
+						li.innerHTML='<i class="fa fa-play-circle" style="cursor:pointer;"></i>&nbsp;&nbsp;&nbsp;'+this.result.FileName
+						li.FileData=this.result.FileData
+						li.FileType=this.result.FileType
+						$("#downloaded_item").append(li)
+						li.onclick=function(){
+							if(li.FileType.indexOf('audio')!=-1)
+							{
+								document.querySelector('audio').src=li.FileData
+								document.querySelector('audio').play()
+								$(".audio_file_name").html(data.result.FileName)
+							}
+							else if(li.FileType.indexOf('video')!=-1)
+							{
+								document.querySelector('video').src=li.FileData
+								document.querySelector('video').play()
+								$(".video_file_name").html(data.result.FileName)
+							}
+						}
+					}
+				}
+			
+		}
+	}
+}
+function download(element){
+	var request_url=element.name
+	var request=new XMLHttpRequest()
+	request.responseType='blob'
+	// audio video pdf text or any file
+	request.open("POST",request_url,true)
+	request.send()
+	request.onreadystatechange=function()
+	{
+		if(this.readyState==4)
+		{
+			if(this.status==200)
+			{
+				var reader=new FileReader()
+				reader.readAsDataURL(this.response)
+				reader.onload=function()
+				{
+					var download_data={
+						"FileName":request_url,
+						"FileData":this.result,
+						"FileType":request.response.type,
+						"FileSize":(request.response.size/1024/1024).toFixed(2)+"mb"
+					}
+					
+					var db=window.indexedDB.open('downloads')
+					db.onsuccess=function()
+					{
+						var idb=this.result
+						var permission=idb.transaction('files','readwrite')
+						var access=permission.objectStore("files")
+						var data=access.add(download_data)
+						data.onsuccess=function()
+						{
+							alert('file added successfullly')
+						}
+					}
+				}
+			}
+			else if(this.status==404)
+			{
+				document.querySelector('#result').innerHTML="<b>Sorry File is not available on server</b>"
+			}
+		}
+	}
+	request.onprogress=function(event)
+	{
+		var percentage=Math.floor(event.loaded/event.total)*100
+		$("#result").html(percentage+'%')
+		element.parentNode.childNodes[3].childNodes[1].innerHTML=percentage+'%'
+		element.parentNode.childNodes[3].childNodes[1].style.width=percentage+'%'
+	}
+	request.onload=function()
+	{
+
+	}
+}
+</script>
+</body>
+</html>
