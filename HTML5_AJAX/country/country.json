@@ -1,0 +1,20 @@
+[
+
+	{
+		"country":"India",
+		"code":"+91",
+		"state":[
+			{"name":"Bihar","city":["Muzaffarpur","Sasaram"]},
+			{"name":"Rajasthan","city":["Dholpur","Jaipur"]}
+		]
+	},
+	{
+		"country":"Nepal",
+		"code":"+97",
+		"state":[
+			{"name":"nepal_state_1","city":["city_1_1","city_1_2"]},
+			{"name":"nepal_state_2","city":["city_2_1","city_2_2"]}
+		]
+	}
+
+]
