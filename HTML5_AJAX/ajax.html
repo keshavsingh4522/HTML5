@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowav
+emaz.gif','https://camo.githubusercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752
+e6e65742f63697263756c61722d617564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/
+giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c4
+18d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f7
+3756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/scre
+enshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f646
+56d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media
+/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.github
+usercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617
+564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/
+<pre>
+	
+     <h1 id="ajax" style="color: cyan;"></h1>
+
+</pre>
+<button id="update">update</button>
+giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c4
+18d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f7
+3756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/scre
+enshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f646
+56d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media
+/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.github
+usercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617
+564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/
+giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c4
+18d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f7
+3756e62757273742e676966'https://media2.giphy.com/media/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/scre
+enshots/3940627/audiowavemaz.gif','https://camo.githubusercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f646
+56d6f2e6b656c76696e61752e6e65742f63697263756c61722d617564696f2d776176652f73756e62757273742e676966'https://media2.giphy.com/media
+/l4XfgLyXAnyzCh7vfY/giphy.gif','https://cdn.dribbble.com/users/902766/screenshots/3940627/audiowavemaz.gif','https://camo.github
+usercontent.com/49c418d7469fbc799f7653c4d9ad0c0a6ffa2fe1/687474703a2f2f64656d6f2e6b656c76696e61752e6e65742f63697263756c61722d617
+564696f2d776176652f73756e62757273742e676966'
+</body>
+<script>
+	document.querySelector('#update').onclick=function(){
+		var request=new XMLHttpRequest();
+		request.open('POST','keshav.txt',true);
+		request.send()
+		request.onreadystatechange=function(){
+			console.log('readyState : '+this.readyState)
+			console.log('response : '+this.response)
+			console.log('responseText : '+this.responseText)
+			console.log('status : '+this.status)
+			console.log('statusText : '+this.statusText)
+			console.log('\n')
+			if(this.readyState==4)
+			{
+				document.querySelector('#ajax').innerHTML=this.responseText;
+			}
+		}
+	}
+</script>
+</html>
