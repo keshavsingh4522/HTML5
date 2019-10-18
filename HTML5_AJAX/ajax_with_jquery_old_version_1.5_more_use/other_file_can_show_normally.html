@@ -30,7 +30,7 @@
 		$("button").on('click',function(){
 			$.ajax({
 				type:'GET',
-				url:'../country/country.json',
+				url:'demo.txt',
 				// readyState==2
 				beforeSend:function(){
 					$(".loader").removeClass('d-none')
@@ -39,10 +39,7 @@
 				success:function(response,status,xml)
 				{
 					$(".loader").addClass('d-none')
-					console.log(xml)
-					var data=xml.responseJSON
-					console.log(data[0].country)
-					$(".ajax_update").html(data[0].country)
+					$(".ajax_update").html(response)
 				}
 			})
 		})
