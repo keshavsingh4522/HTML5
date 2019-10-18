@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	button
+    	{
+    		box-shadow: none !important;
+    	}
+    	body
+    	{
+    		overflow: hidden;
+    	}
+    </style>
+</head>
+<body>
+	<div class="progress rounded-0">
+		<div class="progress-bar progress-bar-striped progress-bar-animated" id="progress"></div>
+	</div>
+<div class="ajax_update"></div>
+<button class="btn btn-success rounded-0 update">Update</button>
+<br><br>
+<i class="fa fa-spinner fa-spin d-none fa-3x text-warning loader"></i>
+<script>
+	$(document).ready(function(){
+		$(".update").on('click',function(){
+			$.ajax({
+				type:'GET',
+				url:'../1.mp3',
+				// dataType:'json' or 'xml' optional, no effect if we not use dataType
+				// by default cache is true so make it false
+				cache:false,
+				// by default async is true
+				async:true,
+				// we can do coding of pure javascript in this xhr method
+				xhr:function(){
+					var request=new XMLHttpRequest()
+					request.responseType='blob'
+					request.onprogress=function(e)
+					{
+						var percentage=Math.floor((e.loaded/e.total)*100)
+						$("#progress").css({'width':percentage+'%'})
+						$('#progress').html(percentage+'%')
+					}
+					return request
+				},
+				// readyState==2
+				beforeSend:function(){
+					$(".loader").removeClass('d-none')
+				},
+				// readyState==4
+				success:function(response,status,xml)
+				{
+					// create pause btn
+					/*var btn=document.createElement('BUTTON')
+					btn.className='btn btn-success rounded-0 pause'
+					btn.innerHTML='pause song'
+					document.body.append(btn)*/
+
+					var url=URL.createObjectURL(response)
+					$(".loader").addClass('d-none')
+					$(".ajax_update").html(url)
+					console.log(url)
+
+
+					// in HTML5 create audio
+					var audio=new Audio()
+					audio.src=url
+					audio.play()
+					/*audio.onplay=function(){
+						$(".pause").on('click',function(){
+							audio.pause()
+							$(this).html('play song')
+						})
+					}
+					audio.onpause=function(){
+						$(".pause").on('click',function(){
+							audio.play()
+							$(this).html('pause song')
+						})
+					}*/
+				}
+			})
+		})
+	})
+</script>
+</body>
+</html>
