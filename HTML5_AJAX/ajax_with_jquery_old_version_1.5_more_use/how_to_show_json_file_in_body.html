@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	button
+    	{
+    		box-shadow: none !important;
+    	}
+    	body
+    	{
+    		overflow: hidden;
+    	}
+    </style>
+</head>
+<body>
+<div class="ajax_update"></div>
+<button class="btn btn-success rounded-0">Update</button>
+<br><br>
+<i class="fa fa-spinner fa-spin d-none fa-3x text-warning loader"></i>
+<script>
+	$(document).ready(function(){
+		$("button").on('click',function(){
+			$.ajax({
+				type:'GET',
+				url:'country/country.json',
+				// readyState==2
+				beforeSend:function(){
+					$(".loader").removeClass('d-none')
+				},
+				// readyState==4
+				success:function(response,status,xml)
+				{
+					$(".loader").addClass('d-none')
+					console.log(xml)
+					var data=xml.responseJSON
+					console.log(data[0].country)
+					$(".ajax_update").html(data[0].country)
+				}
+			})
+		})
+	})
+</script>
+</body>
+</html>
