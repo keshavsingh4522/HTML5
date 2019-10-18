@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+    	button
+    	{
+    		box-shadow: none !important;
+    	}
+    	body
+    	{
+    		overflow: hidden;
+    	}
+    </style>
+</head>
+<body>
+<div class="ajax_update"></div>
+<button class="btn btn-success rounded-0">Update</button>
+<div class="ajax_under_process"></div>
+<div class="ajax_process_complete"></div>
+<script>
+	$(document).ready(function(){
+		$(document).ajaxStart(function(){
+			$(".ajax_under_process").html('request under process')
+		})
+		$(document).ajaxStart(function(){
+			$(".ajax_process_complete").html('request complete')
+		})
+	$("button").click(function(){
+		$(".ajax_update").load('../country/country.json')
+	})
+})
+</script>
+</body>
+</html>
