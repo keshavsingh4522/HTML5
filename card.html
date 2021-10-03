@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card</title>
+    <style>
+     *,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  /* 1 rem = 10px */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-family: "Montserrat", sans-serif;
+  margin: 4rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4em;
+}
+.card {
+  perspective: 150rem;
+  position: relative;
+  -moz-perspective: 150rem;
+  height: 52rem;
+}
+.card-side {
+  transition: all 0.8s ease-out;
+  height: 52rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+
+.card-front {
+  background-color: white;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.one {
+  background-color: #dc3d4b;
+}
+
+.two {
+  background-color: #de8d0d;
+}
+
+.three {
+  background-color: #c8b372;
+}
+.card:hover .card-front {
+  transform: rotateY(-180deg);
+}
+.card:hover .card-back {
+  transform: rotateY(0);
+}
+
+.card__image {
+  background-size: cover;
+  height: 23rem;
+  background-blend-mode: screen;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  border-bottom-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.card__image-1 {
+  background-image: url(https://images.livemint.com/img/2020/06/03/600x338/Valorant_1591218052835_1591218061187.jpg);
+}
+
+.card__image-2 {
+  background-image: url(https://cdn.charlieintel.com/wp-content/uploads/2021/01/29135154/53f7d969762523414600a6549e36202a-1024x576.jpg);
+}
+
+.card__image-3 {
+  background-image: url(https://www.gamingscan.com/wp-content/uploads/2020/10/Call-of-Duty-Game-Order.jpg);
+}
+
+ 
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card-side card-front">
+            <div class="card__image card__image-1">&nbsp;</div>
+            <!-- Content -->
+          </div>
+          <div class="card-side card-back one">
+            <!-- Back Content -->
+          </div>
+        </div>
+      </div>
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card-side card-front">
+            <div class="card__image card__image-2">&nbsp;</div>
+            <!-- Content -->
+          </div>
+          <div class="card-side card-back two">
+            <!-- Back Content -->
+          </div>
+        </div>
+      </div>
+      <div class="col-1-of-3">
+        <div class="card">
+          <div class="card-side card-front">
+            <div class="card__image card__image-3">&nbsp;</div>
+            <!-- Content -->
+          </div>
+          <div class="card-side card-back three">
+            <!-- Back Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
