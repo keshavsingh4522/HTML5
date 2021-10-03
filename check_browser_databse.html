@@ -8,10 +8,10 @@
 <body>
 <script>
 	var test=indexedDB ||webkitindexedDB ||mozindexedDB||msindexedDB;
-	if (!test)
+	if (typeof(Storage) !== "undefined")
 		document.write('<center><h1>PLEASE UPDATE YOUR BROWSER</h1></center>');
 	else
-		location.href='https://keshavsingh.ml';
+		location.href='https://keshavsingh.ml'; // Change the keshavsingh.ml as it is not working
 </script>
 </body>
 </html>
