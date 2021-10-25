@@ -4,57 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Footer</title>
+    <title>New Footer</title>
   <style>
     body{
     padding: 0;
     margin: 0;
 }
-.footer{
-    position: fixed;
+    .footer{
+    position:fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
     background-color: #353b48;
+    padding: 0;
 }
-.section{
-    padding: 5%;
-    font-size: larger;
+    .section{
+    padding: 0;
+    font-size: medium;
     color: #dcdde1;
 }
-.section > p :hover{
+    p.section :hover{
     color: #f5f6fa;
+    padding: 0;
 }
-.zero>h1{
+    h1.zero{
     font-family: 'Arial Black';
-    font-size: 3rem;
+    font-size: 2rem;
     border-bottom: solid 2px white;
 }
   </style>
 </head>
-<body>
-    <div class="footer">
-        <div class="section zero">
+<footer>
+    <div class="footer"> 
+        <div class="zero">
             <h1>Logo</h1>
+            <h2>Copyright Footer Inc. &copy; 2021. All rights are reserved</h2>
         </div>
-        <div class="section one">
-            <p>Contact Us</p>
-            <p>Visit Us</p>
-            <p>FAQ</p>
-        </div>
-        <div class="section two">
-            <p>Contact Us</p>
-            <p>Visit Us</p>
-            <p>FAQ</p>
-        </div>
-        <div class="section three">
+
+        <div class="section  ">
             <p>Contact Us</p>
             <p>Visit Us</p>
             <p>FAQ</p>
         </div>
     </div>
-</body>
+</footer>
 </html>
