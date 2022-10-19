@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+<head>  
+<title> Project - Rock,Paper And Scissors   </title>
+</head>
+
+<body>
+
+
+</body>
+
+<script>
+
+
+function computerPlay(){
+   var a=(Math.random()*10);
+    var user=prompt("Rock,Paper or Scissors?");
+    user=user.toUpperCase();
+    if (a >= 6){
+       var b="Scissors";
+    }
+    else if (a >= 3){
+        var b ="Paper";
+    }
+    else if (a >= 0){
+        var b = "Rock";
+    }
+
+
+    if ( user == "ROCK"){
+        if (b=="Scissors"){
+            console.log("You Chose Rock and The Computer Chose Scissors.");
+            console.log("You Win!");
+        }
+        else if (b=="Paper"){
+            console.log("You Chose Rock and The Computer Chose Paper. ");
+            console.log(" The Computer Wins!");
+        }
+        else if (b=="Rock"){
+            console.log("You Chose Rock and The Computer Chose Rock.02| ");
+            console.log(" It's a Tie!");
+        }    
+    }
+    else if (user=="PAPER"){
+        if (b="Scissors"){
+            console.log("You Chose Paper and The Computer Chose Scissors. ");
+            console.log("The Computer Wins! ");
+        }
+        else if (b="Paper"){
+            console.log("You Chose Paper and The Computer Chose Paper. ");
+            console.log(" It's a Tie!");
+        }
+        else if (b="Rock"){
+            console.log("You Chose Paper and The Computer Chose Rock.  ");
+            console.log("You Win! ");
+        }
+    }
+    else if (user=="SCISSORS"){
+        if (b="Scissors"){
+            console.log("You Chose Scissors and The Computer Chose Scissors.  ");
+            console.log(" It's a Tie! ");
+        }
+        else if (b="Paper"){
+            console.log("You Chose Scissors and The Computer Chose Paper. ");
+            console.log(" You Win! ");
+        }
+        else if (b="Rock"){
+            console.log("You Chose Scissors and The Computer Chose Rock.  ");
+            console.log("The Computer Wins! ");
+        }
+    }
+
+
+
+}
+
+function lala(){
+x=prompt("Enter Something");
+alert(x);
+}
+
+// console.log(computerPlay());
+// lala()
+
+function computerPlayV1(){
+    var a=(Math.random()*10);
+    var user=prompt("Rock,Paper or Scissors?");
+    user=user.toUpperCase();
+    if (a >= 6){
+       var b="Scissors";
+    }
+    else if (a >= 3){
+        var b ="Paper";
+    }
+    else if (a >= 0){
+        var b = "Rock";
+    }
+
+
+    if ( user == "ROCK"){
+        if (b=="Scissors"){
+            alert("You Chose Rock and The Computer Chose Scissors.");
+            alert("You Win!");
+            uwins+=1;
+        }
+        else if (b=="Paper"){
+            alert("You Chose Rock and The Computer Chose Paper. ");
+            alert(" The Computer Wins!");
+            cwins+=1;
+        }
+        else if (b=="Rock"){
+            alert("You Chose Rock and The Computer Chose Rock.");
+            alert(" It's a Tie!");
+        }    
+    }
+    else if (user=="PAPER"){
+        if (b="Scissors"){
+            alert("You Chose Paper and The Computer Chose Scissors. ");
+            alert("The Computer Wins! ");
+            cwins+=1;
+        }
+        else if (b="Paper"){
+            alert("You Chose Paper and The Computer Chose Paper. ");
+            alert(" It's a Tie!");
+        }
+        else if (b="Rock"){
+            alert("You Chose Paper and The Computer Chose Rock.  ");
+            alert("You Win! ");
+            uwins=+1;
+        }
+    }
+    else if (user=="SCISSORS"){
+        if (b="Scissors"){
+            alert("You Chose Scissors and The Computer Chose Scissors.  ");
+            alert(" It's a Tie! ");
+        }
+        else if (b="Paper"){
+            alert("You Chose Scissors and The Computer Chose Paper. ");
+            alert(" You Win! ");
+            uwins+=1;
+        }
+        else if (b="Rock"){
+            alert("You Chose Scissors and The Computer Chose Rock.  ");
+            alert("The Computer Wins! ");
+            cwins+=1;
+        }
+    }
+    else if (user=="42"){
+        alert("You found an Easter Egg! ");
+    }
+
+
+
+}
+
+// computerPlayV1();
+var uwins=0;
+var cwins=0;
+console.log(typeof uwins);
+function game(){
+    computerPlayV1();
+    console.log("You have won",uwins," times.");
+    console.log("The Computer has won",cwins," times.")
+}
+
+function gamev1(){
+    while( cwins != 5 && uwins != 5  ){
+        game();    
+    }
+    if(uwins == 5){
+        console.log("Yay, YOU Have Won The Game! ")
+    }
+    else if(cwins == 5){
+        console.log("Oh Yeah, The Computer Won The Game! ")
+    }
+}
+
+gamev1();
+
+</script>
+
+
+
+
+<style>
+
+
+    body{
+        background-color: gray;
+    }
+
+
+
+</style>
